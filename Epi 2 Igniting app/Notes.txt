@@ -32,3 +32,7 @@ later if we delete node_modules and lock file, and change pkg file as chalk:^5.2
 - thn give npm i, our lock file will have chalk:5.3.0, since ^ is thr, it will update to latest 
 minor/patch version
 - package and package-lock.json should be pushed to github repo
+
+Git 
+- whatevr u can regenerate dont put it on git eg: node_modules 
+- using package.json and package-lock.json, we can regenerate node_modules 
