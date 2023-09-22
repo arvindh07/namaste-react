@@ -1,0 +1,9 @@
+1. What is CDN?
+-- It is used to deliver content quickly as it serves near to the location of the user, rather than going
+to the server for request which is located some where very far wrt to the user.
+-- It is a group of distributed servers that provides cached internet content from a network closest to the
+user to speed up the delivery.
+
+2. What is crossorigin in script tag?
+-- it is used to request content from other servers or origins
+-- share resources from one domain to another

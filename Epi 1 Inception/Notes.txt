@@ -1,0 +1,33 @@
+Episode 1 - Inception
+
+- we will write basic hello world using html
+- we will write heading hello world using js
+- we will try to write hello world using react
+    -- for this we will be using CDN
+- we got two cdn links react and reactDom
+
+Why we need to separate cdn links instead of just one?
+- react is not just for browsers it works in mobile like react native etc
+- react cdn is the core code base of react
+- react dom cdn is the connecting bridge b/w react and dom. It is used to manipulate dom.
+
+Create react hello world
+- first creayte element using react core cdn
+- React.createElement()
+- then create root element to render our react code. This comes from reactDom.
+- ReactDom.createRoot()
+- then render the element inside root.
+- root.render(element)
+
+CreateElement and render
+- what does createElement returns -- it returns me a react element which is ultimately a js object
+- later render method converts those react elements into html code
+- imagine nested elements, writing code will become more monotonous and clumsy.
+- that is why JSX is used.
+
+DOM manipulation
+- it is one of the costliest operation performed by browser.
+
+React is a library not a framework
+- it can be executed in a independent place of our app whether it is header or footer...it doesnt matter
+- where framework comes with a full fledged syntax and rules.

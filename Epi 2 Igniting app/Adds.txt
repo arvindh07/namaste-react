@@ -1,0 +1,9 @@
+-> Caret(^) and tilde(~) in package.json
+
+1.5.7
+1 -> major version
+5 -> minor version 
+7 -> patch version 
+- caret will be used to update minor and patch version(if any)
+- tilde will update only the patch version(if any)
+
