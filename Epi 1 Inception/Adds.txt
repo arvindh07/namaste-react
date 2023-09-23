@@ -7,3 +7,22 @@ user to speed up the delivery.
 2. What is crossorigin in script tag?
 -- it is used to request content from other servers or origins
 -- share resources from one domain to another
+
+3. Async and defer attribute
+-- there are three ways to load and execute js in browsers - normal, async, defer 
+normal
+    - html parses, whn it sees a script tag it pauses html parsing
+    - it loads and executes script tag and then html parsing continues
+async
+    - html parses, whn it sees a script tag it doesnt pauses html parsing
+    - it loads along with html parsing and then it pause the html parsing 
+    and execute the script and then html parsing continues
+defer
+    - html parses, whn it sees a script tag it doesnt pause html parsing
+    - it loads along with html parsing and once html parsing completed, it will 
+    execute the script tag
+
+When to use what?
+- when one script is dependent on other, dont go for async, bcoz it doesnt
+guarantee the execution flow. It is better to go with defer.
+- when scripts are independent go for async.
