@@ -28,11 +28,48 @@ package-lock.json and node_modules
 Scenerio
 - npm i chalk:^5.3.0(latest)
 - package-lock.json will be created with chalk:5.3.0
-later if we delete node_modules and lock file, and change pkg file as chalk:^5.2.0
-- thn give npm i, our lock file will have chalk:5.3.0, since ^ is thr, it will update to latest 
-minor/patch version
-- package and package-lock.json should be pushed to github repo
+later if we delete node_modules and lock file, and change pkg file as chalk:5.2.0
+- thn give npm i, our lock file will have chalk:5.2.0
+- again change pg.json to ^5.2.0
+- since ^ is thr, it should update to latest minor/patch version
+- but due to presence of lock file, it will again install 5.2.0 since that is the version lock file has.
+Conclu:
+- if a project starts with a x version and aftr some days, new version is available in the market.
+which may or may not support our old code. In that case, to avoid the dependency issue, we use 
+lock file to install the version that we use while we code.
+- for this reason, package and package-lock.json should be pushed to github repo
 
 Git 
 - whatevr u can regenerate dont put it on git eg: node_modules 
 - using package.json and package-lock.json, we can regenerate node_modules 
+
+Parcel
+- npx create index.html 
+- it will host our app in localserver
+
+Go for npm package rather than cdn? 
+- to avoid network calls(costliest operation) to cdn and to manage our packages we can do npm i <pkg_name>
+- install npm i react, npm i react-dom
+
+Error1: React is not defined
+- we have just installed react pkg, but we havent imported, so import React from "react"
+
+Error2: Browser scripts cant have imports or exports
+- browser treats our script<app.js> tag, as a normal js file, but it is not.
+- so we need add <script type="module">, to make it work.
+
+BrowsersList
+- we can configure on wht browser our will work.
+Does it mean, if we dont configure for other browsers it wont work?
+- No. It may or may not work for others but 99.9% it will work on specified browsers
+How we can configure?
+- in package.json, we can add one more key, like, 
+    -- "browsersList": [
+        "last 2 chrome version",
+        "last 2 firefox version"
+    ]
+- based on this it will do differential bundling and make prod ready.
+- One thing is, if we cover all browsers(including old ones), it may end up in some extra code.
+- we can cover 90 to 95% of users, in that way we can save some space.
+for eg: we can use "last 2 version"
+- to see user coverage, go to browserslist official doc.
