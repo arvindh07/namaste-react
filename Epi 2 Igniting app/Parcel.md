@@ -21,7 +21,7 @@ It does the following things for us:
 
 Dev build and Production build
 ## Dev build is something that we have, whn we run npx parcel index.html
-## prod build, npx parcel build infex.html
+## prod build, npx parcel build index.html
 ## Both the builds will be located in dist folder
 
 Why our react app is fast?

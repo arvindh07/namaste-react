@@ -4,6 +4,10 @@ Our previous epi code is not production ready bcoz
 - it needs to minified, image optimization, remove comments and lot of things
 - for the above requirements, we need library or packages
 
+Production ready(my understanding)
+- back to basics whr it just consists of HTML, CSS and JS-- production ready code.
+- in that too, we need to optimize the code as much as we can like remove comments, minification etc
+
 NPM 
 - it is used to manage packages
 - react by default comes with NPM
@@ -23,7 +27,7 @@ In our app, we will be using parcel
 package-lock.json and node_modules
 - aftr install, our directory will contain 2 new files
 - package-lock maintains the exact version of our dependencies
-- node_modules will contain all the dependencied code fetched from npm repository
+- node_modules will contain all the dependencies code fetched from npm repository
 
 Scenerio
 - npm i chalk:^5.3.0(latest)
@@ -36,7 +40,7 @@ later if we delete node_modules and lock file, and change pkg file as chalk:5.2.
 Conclu:
 - if a project starts with a x version and aftr some days, new version is available in the market.
 which may or may not support our old code. In that case, to avoid the dependency issue, we use 
-lock file to install the version that we use while we code.
+lock file to install the version that we use while we code/develop.
 - for this reason, package and package-lock.json should be pushed to github repo
 
 Git 
