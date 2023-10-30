@@ -15,19 +15,19 @@
 - move individual components into separate file. eg: Header.jsx
 - structure
   🔸 src
-  🔸 App.js
-  🔸 components
-  🔸 Header.jsx
+    🔸 App.js
+    🔸 components
+      🔸 Header.jsx
 - there is no pre defined folder structure. you can do anything u want, but try to avoid too much
   nested folders.
 - never keep the hard coded value or mock data in the components folder❌
 - keep it in
   🔸 src
-  🔸 App.js
-  🔸 components
-  🔸 utils
-  🔸 constants.js
-  🔸 mockData.js
+    🔸 App.js
+    🔸 components
+    🔸 utils
+      🔸 constants.js
+      🔸 mockData.js
 
 ## default import and named import
 
@@ -58,7 +58,7 @@
 ## hooks🔥🔥
 
 - we have a special variable in react, that is created by hook(provided by react)
-- they r just normal js utility functions
+- hooks r just normal js utility functions
 
 ## useState hook
 
@@ -70,9 +70,9 @@
 - AppBody -> contains this state variable
   -> on setList, react will replace the AppBody with new list. i.e., it re-renders🔥🔥
 
-## how ur app is fast?
+## how our app is fast?
 
-- if u say, it bundles fast blah blah blah...it is wrng😜
+- if u say, it bundles fast blah blah blah...it is wrng bcoz it is not done by react😜
 - react is fast and efficient in DOM manipulation🚀
 
 ## diff algo, react fiber, reconciliation algo
