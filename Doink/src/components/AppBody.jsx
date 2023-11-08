@@ -1,6 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { ALL_RESTAURANTS_API_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const AppBody = () => {
     const [initial, setInitial] = useState([]);
@@ -24,11 +26,11 @@ const AppBody = () => {
 
     const fetchData = async () => {
         setLoading(true);
-        const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0689208&lng=80.26711139999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const response = await fetch(ALL_RESTAURANTS_API_URL);
         const json = await response.json();
+        // console.log("all ", json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setInitial(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setLoading(false);
-        console.log(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setListOfRestaurants(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
@@ -49,20 +51,6 @@ const AppBody = () => {
     return (
         <>
             {loading ? (
-                // <div className="border">
-                //     <ThreeCircles
-                //         height="100"
-                //         width="100"
-                //         color="#4fa94d"
-                //         wrapperStyle={{}}
-                //         wrapperClass=""
-                //         visible={true}
-                //         ariaLabel="three-circles-rotating"
-                //         outerCircleColor="red"
-                //         innerCircleColor="orange"
-                //         middleCircleColor="yellow"
-                //     />
-                // </div>
                 <Shimmer />
             ) : (
                 <div className="app__body">
@@ -93,7 +81,9 @@ const AppBody = () => {
                             <div className="restro__container">
                                 {listOfRestaurants?.map((restaurant) => {
                                     return (
-                                        <RestaurantCard key={restaurant.info.id} restaurant={restaurant} />
+                                        <Link to={`/restaurant/${restaurant?.info?.id}`} key={restaurant.info.id}>
+                                            <RestaurantCard restaurant={restaurant} />
+                                        </Link>
                                     )
                                 })}
                             </div>
