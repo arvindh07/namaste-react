@@ -7,31 +7,20 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import { RESTAURANT_URL } from '../utils/constants';
 import { useParams } from 'react-router-dom';
 import MenuCard from './MenuCard';
+import useFetchMenu from '../utils/hooks/useFetchMenu';
 
 const Restaurant = () => {
-    const [menuItems, setMenuItems] = useState([]);
-    const [hotelInfo, setHotelInfo] = useState({});
     const { hotelId } = useParams();
-
-    const fetchData = async () => {
-        const response = await fetch(RESTAURANT_URL + hotelId);
-        const json = await response.json();
-        // console.log("json ", json);
-        setHotelInfo(json?.data?.cards?.[0]?.card?.card?.info);
-        setMenuItems(json?.data?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-        console.log("single", json?.data?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-    }
+    const [menuItems, hotelInfo] = useFetchMenu(hotelId);
 
     const renderMenuItems = () => {
-        return (<Accordion allowMultipleExpanded={false}>
+        return (<Accordion allowZeroExpanded allowMultipleExpanded={false}>
             {menuItems?.map((menu, index) => {
                 if (index !== 0) {
                     const outsideList = menu?.card?.card?.itemCards;
                     const outsideTitle = menu?.card?.card?.title;
-                    console.log("out -> ", outsideList, outsideTitle);
                     if (outsideList) {
                         return (
                             <>
@@ -63,10 +52,6 @@ const Restaurant = () => {
         </Accordion>)
     }
 
-    useEffect(() => {
-        fetchData();
-    }, [])
-
     return (
         <div className='container restro'>
             <div className="res__header">
@@ -91,37 +76,6 @@ const Restaurant = () => {
                 <button className="veg">Only veg</button>
                 <button className="nv">Only non veg</button>
             </div>
-            {/* <Accordion>
-                {menuItems?.map((item, index) => {
-                    if (index === 0) {
-                        return <></>
-                    }
-                    const res = item?.card?.card
-                    return (
-                        <AccordionItem key={res.Title} allowZeroExpanded>
-                            <AccordionItemHeading>
-                                <AccordionItemButton>
-                                    {res.Title}
-                                </AccordionItemButton>
-                            </AccordionItemHeading>
-                            <AccordionItemPanel>
-                                {item.content}
-                            </AccordionItemPanel>
-                        </AccordionItem>
-                    )
-                })}
-
-                <AccordionItem key={"123"} allowzeroexpanded="true">
-                    <AccordionItemHeading>
-                        <AccordionItemButton>
-                            {"heading"}
-                        </AccordionItemButton>
-                    </AccordionItemHeading>
-                    <AccordionItemPanel>
-                        {"content"}
-                    </AccordionItemPanel>
-                </AccordionItem>
-            </Accordion> */}
             {renderMenuItems()}
         </div>
     )

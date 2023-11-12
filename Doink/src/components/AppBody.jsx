@@ -1,14 +1,18 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Shimmer from "./Shimmer";
-import { ALL_RESTAURANTS_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useFetchRestaurant from "../utils/hooks/useFetchRestaurant";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 const AppBody = () => {
-    const [initial, setInitial] = useState([]);
-    const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [text, setText] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, initial, listOfRestaurants, setListOfRestaurants] = useFetchRestaurant();
+    const onlineStatus = useOnlineStatus();
+
+    if(!onlineStatus){
+        return <h2 style={{ textAlign: "center", margin: "1em 0" }}>Oops! You dont have an internet connection. Please try again</h2>
+    }
 
     const filterTopRated = () => {
         const filteredRes = listOfRestaurants?.filter((res) => {
@@ -24,16 +28,6 @@ const AppBody = () => {
         setText("");
     }
 
-    const fetchData = async () => {
-        setLoading(true);
-        const response = await fetch(ALL_RESTAURANTS_API_URL);
-        const json = await response.json();
-        // console.log("all ", json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setInitial(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setLoading(false);
-        setListOfRestaurants(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    }
-
     const searchHandler = () => {
         const searchRestros = initial?.filter((res) => {
             const resName = res.info.name.toLowerCase();
@@ -43,10 +37,6 @@ const AppBody = () => {
         })
         setListOfRestaurants(searchRestros);
     }
-
-    useEffect(() => {
-        fetchData();
-    }, [])
 
     return (
         <>
