@@ -18,7 +18,9 @@ const AppLayout = () => {
     return (
         <div className="appcontainer">
             <Header />
-            <Outlet />
+            <div className="md:w-11/12 mx-auto">
+                <Outlet />
+            </div>
             <Footer />
         </div>
     )
@@ -48,7 +50,7 @@ const appRouter = createBrowserRouter([
             {
                 path: "/grocery",
                 element: <Suspense fallback={<Shimmer />}><Grocery /></Suspense>
-            }       
+            }
         ]
     }
 ])

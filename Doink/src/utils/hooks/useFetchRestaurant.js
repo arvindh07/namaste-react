@@ -20,7 +20,7 @@ const useFetchRestaurant = () => {
         setListOfRestaurants(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
-    return [loading, initial, listOfRestaurants, setListOfRestaurants];
+    return [listOfRestaurants];
 }
 
 export default useFetchRestaurant;

@@ -5,26 +5,26 @@ import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 export const Header = () => {
     const onlineStatus = useOnlineStatus();
     return (
-        <div className="header">
-            <div className="logo__container">
-                <img src={logo} alt="" className="logo" />
-                <span className="logo_text">DOINK</span>
+        <div className="flex flex-col shadow-xl py-3 mb-6 bg-white md:flex-row justify-between px-6">
+            <div className="flex justify-center items-center">
+                <img src={logo} alt="" className="w-10 text-center border-3 rounded-full" />
+                <span className="font-bold text-xl px-2 text-orange-500">DOINK</span>
             </div>
-            <div className="nav_items">
-                <ul className="nav__list">
-                    <li className="nav__item">
+            <div>
+                <ul className="flex flex-col items-center md:flex-row">
+                    <li className="p-4 font-bold hover:underline hover:duration-100 hover:text-orange-500">
                         <Link to="/">Home</Link>
                     </li>
-                    <li className="nav__item">
+                    <li className="p-4 font-bold hover:underline hover:duration-100 hover:text-orange-500">
                         <Link to="/about">About</Link>
                     </li>
-                    <li className="nav__item">
+                    <li className="p-4 font-bold hover:underline hover:duration-100 hover:text-orange-500">
                         <Link to="/cart">Cart</Link>
                     </li>
-                    <li className="nav__item">
+                    <li className="p-4 font-bold hover:underline hover:duration-100 hover:text-orange-500">
                         <Link to="/grocery">Grocery</Link>
                     </li>
-                    <li style={{ fontSize: "1.3rem" }}>
+                    <li className="p-4 font-bold text-lg">
                         {onlineStatus ? "🟢" : "🔴"}
                     </li>
                 </ul>

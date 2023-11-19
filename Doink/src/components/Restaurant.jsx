@@ -53,29 +53,29 @@ const Restaurant = () => {
     }
 
     return (
-        <div className='container restro'>
-            <div className="res__header">
+        <div className='mx-3.5 mb-6'>
+            <div className="shadow-md p-4 flex flex-col bg-gray-50">
                 <div className="left">
-                    <h6 className="res__name">{hotelInfo?.name}</h6>
+                    <h6 className="font-bold text-lg">{hotelInfo?.name}</h6>
                     {hotelInfo?.cuisines?.map((cuisine) => {
                         return (
-                            <p key={cuisine} className="res__type">{cuisine}</p>
+                            <p key={cuisine} className="text-slate-800">{cuisine}</p>
                         )
                     })}
                     <p className="location">{hotelInfo?.areaName}, {hotelInfo?.city}</p>
                 </div>
-                <div className="right">
-                    <span className="ratings">{hotelInfo?.avgRating}⭐</span>
+                <div className="mt-4">
+                    <span className="bg-black text-white px-2 text-center rounded-md py-0.5">{hotelInfo?.avgRating}⭐</span>
                 </div>
             </div>
-            <div className="res__info">
-                <p className="timing">&#x1F551; {hotelInfo?.sla?.slaString}</p>
-                <span className="rs">{hotelInfo?.costForTwoMessage}</span>
+            <div className="my-8 shadow-md p-4 bg-gray-50">
+                <p className="font-semibold mb-2">&#x1F551; {hotelInfo?.sla?.slaString}</p>
+                <span className="font-bold">{hotelInfo?.costForTwoMessage}</span>
             </div>
-            <div className="vegfilter">
+            {/* <div className="vegfilter">
                 <button className="veg">Only veg</button>
                 <button className="nv">Only non veg</button>
-            </div>
+            </div> */}
             {renderMenuItems()}
         </div>
     )
