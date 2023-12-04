@@ -125,7 +125,7 @@ useEffect(() => {
     - parentDidMount
 
 *** 
-1. React is doing faster DOM manipulation is bcoz of this batching up render process. React efficiently
+1. React is doing faster DOM manipulation is bcoz of this batching up commit process. React efficiently
 batches up the commit phase bcoz DOM manipulation is one of the costliest operation🔥 so it executes
 it in one go🚀 
 

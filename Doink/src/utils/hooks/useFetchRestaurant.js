@@ -11,13 +11,20 @@ const useFetchRestaurant = () => {
     }, [])
 
     const fetchData = async () => {
-        setLoading(true);
-        const response = await fetch(ALL_RESTAURANTS_API_URL);
-        const json = await response.json();
-        setLoading(false);
-        // console.log("all ", json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setInitial(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setListOfRestaurants(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        try {
+            setLoading(true);
+            const response = await fetch(ALL_RESTAURANTS_API_URL);
+            const json = await response.json();
+            if(json?.data?.statusMessage === "done successfully"){
+                setLoading(false);
+                setInitial(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+                setListOfRestaurants(json.data.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            }else{
+                throw Error("Data not found");
+            }
+        } catch (error) {
+            throw Error("Data not found");
+        }
     }
 
     return [listOfRestaurants];

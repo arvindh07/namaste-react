@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     Accordion,
     AccordionItem,
@@ -8,48 +8,68 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import { useParams } from 'react-router-dom';
-import MenuCard from './MenuCard';
 import useFetchMenu from '../utils/hooks/useFetchMenu';
+import CustomAccordion from './CustomAccordion';
 
 const Restaurant = () => {
+    const [activePanel, setActivePanel] = useState(0);
+    const [toggle, setToggle] = useState(true);
     const { hotelId } = useParams();
     const [menuItems, hotelInfo] = useFetchMenu(hotelId);
 
-    const renderMenuItems = () => {
-        return (<Accordion allowZeroExpanded allowMultipleExpanded={false}>
-            {menuItems?.map((menu, index) => {
-                if (index !== 0) {
-                    const outsideList = menu?.card?.card?.itemCards;
-                    const outsideTitle = menu?.card?.card?.title;
-                    if (outsideList) {
-                        return (
-                            <>
+    // const renderMenuItems = () => {
+    //     return (<Accordion allowZeroExpanded allowMultipleExpanded={false}>
+    //         {menuItems?.map((menu, index) => {
+    //             const outsideList = menu?.card?.card?.itemCards;
+    //             const outsideTitle = menu?.card?.card?.title;
+    //             if (outsideList) {
+    //                 return (
+    //                     <AccordionItem key={outsideTitle}>
+    //                         <AccordionItemHeading>
+    //                             <AccordionItemButton>
+    //                                 {outsideTitle}<span className='pl-1 font-bold'>({outsideList?.length})</span>
+    //                             </AccordionItemButton>
+    //                         </AccordionItemHeading>
+    //                         <AccordionItemPanel>
+    //                             {outsideList?.map((hm) => {
+    //                                 const item = hm?.card?.info;
+    //                                 return (
+    //                                     <MenuCard key={item?.id} item={item} />
+    //                                 )
+    //                             })}
+    //                         </AccordionItemPanel>
+    //                     </AccordionItem>
+    //                 )
+    //             } else {
+    //                 return <></>
+    //             }
+    //         })}
+    //     </Accordion>)
+    // }
 
-                                <AccordionItem key={outsideTitle}>
-                                    <AccordionItemHeading>
-                                        <AccordionItemButton>
-                                            {outsideTitle}
-                                        </AccordionItemButton>
-                                    </AccordionItemHeading>
-                                    <AccordionItemPanel>
-                                        {outsideList?.map((hm) => {
-                                            const item = hm?.card?.info;
-                                            return (
-                                                <MenuCard key={item?.id} item={item} />
-                                            )
-                                        })}
-                                    </AccordionItemPanel>
-                                </AccordionItem>
-                            </>
-                        )
-                    } else {
-                        return <></>
-                    }
-                } else {
-                    return <></>
-                }
-            })}
-        </Accordion>)
+    const renderMenuItems = () => {
+        return (
+            <>
+                {menuItems?.map((menuList, index) => {
+                    const actMenuItems = menuList?.card?.card?.itemCards;
+                    const title = menuList?.card?.card?.title;
+                    return (
+                        <CustomAccordion
+                            key={title}
+                            title={title}
+                            items={actMenuItems}
+                            open={(activePanel === index) && toggle}
+                            setOpen={() => {
+                                if(activePanel === index){
+                                    setToggle(!toggle)
+                                }else{
+                                    setToggle(true)
+                                }
+                                setActivePanel(index)
+                            }} />)
+                })}
+            </>
+        )
     }
 
     return (

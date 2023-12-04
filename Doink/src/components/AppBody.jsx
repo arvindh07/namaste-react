@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import RestaurantCard, { withHighRatedRestaurantCard } from "./RestaurantCard";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useFetchRestaurant from "../utils/hooks/useFetchRestaurant";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+import UserContext from "../utils/context/UserContext";
 
 const AppBody = () => {
     const [text, setText] = useState("");
@@ -49,6 +50,10 @@ const AppBody = () => {
         }
     }, [listOfRestaurants])
 
+    // console.log("li -> ", listOfRestaurants);
+    const HighRatedRestaurant = withHighRatedRestaurantCard(RestaurantCard);
+    const {loggedInUsername, setUsername} = useContext(UserContext);
+
     return (
         <>
             {loading ? (
@@ -77,19 +82,29 @@ const AppBody = () => {
                                 onClick={clearFilter}
                                 className="border-2 border-black">❌</button>
                         </div>
+                        <div className="flex my-2 justify-between md:justify-normal">
+                            <div className="flex">
+                                <input
+                                    type="text"
+                                    className="border-2 border-black rounded-md mr-4 p-1"
+                                    value={loggedInUsername}
+                                    onChange={(e) => setUsername(e.target.value)} />
+                            </div>
+                        </div>
                     </div>
                     {localRes?.length !== 0 ?
                         <>
                             <h2
                                 className="px-3 my-4 mr-2 text-2xl font-bold md:text-4xl md:px-0">Best restaurants for you</h2>
                             <div className="grid grid-cols-1 px-3 mx-auto mt-8 max-w-4/6 sm:grid-cols-2 sm:gap-x-4 sm:auto-rows-auto md:grid-cols-3 lg:grid-cols-4">
-                                {localRes?.map((restaurant) => {
-                                    return (
-                                        <Link className="contents sm:max-w-3/6" to={`/restaurant/${restaurant?.info?.id}`} key={restaurant.info.id}>
-                                            <RestaurantCard restaurant={restaurant} />
-                                        </Link>
-                                    )
-                                })}
+                                {localRes?.map((restaurant) => (
+                                    <Link className="contents sm:max-w-3/6" to={`/restaurant/${restaurant?.info?.id}`} key={restaurant.info.id}>
+                                        {restaurant?.info?.avgRating >= 4.4
+                                            ? <HighRatedRestaurant restaurant={restaurant} />
+                                            : <RestaurantCard restaurant={restaurant} />
+                                        }
+                                    </Link>
+                                ))}
                             </div>
                         </>
                         : <h1 style={{ margin: "1em 0 1em 0.6em", fontSize: "2.2em" }}>No records.</h1>}

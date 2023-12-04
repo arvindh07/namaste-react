@@ -1,8 +1,9 @@
 import React from "react";
 import { GITHUB_USER_URL } from "../utils/constants";
+import UserContext from "../utils/context/UserContext";
 
-class UserCard extends React.Component{
-    constructor(props){
+class UserCard extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
 
@@ -10,10 +11,10 @@ class UserCard extends React.Component{
         // console.log(this.props.name + " child constructor");
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         const data = await fetch(GITHUB_USER_URL + "arvindh07");
         const json = await data.json();
-        console.log(json);
+        // console.log(json);
         this.setState({
             name: json.name || json.login,
             avatarUrl: json.avatar_url,
@@ -23,13 +24,17 @@ class UserCard extends React.Component{
 
     render() {
         // console.log(this.props.name + " child render");
-        const {name, location, avatarUrl} = this.state;
+        const { name, location, avatarUrl } = this.state;
         return (
-            <div className="user__card">
-                <img src={avatarUrl} alt="" />
-                <p className="user__name"><b>Name:</b> {name}</p>
-                <p className="user__location"><b>Location:</b> {location || "Chennai"}</p>
-                {/* <Dummy name={`${name}`} /> */}
+            <div className="flex items-center mb-10 border-2 border-orange-400 p-4 rounded-md">
+                <img src={avatarUrl} alt="" className="w-20 h-20 rounded-full mr-4"/>
+                <div className="w-9/12">
+                    <p className="inline-block"><b>Name: </b></p>
+                    <UserContext.Consumer>
+                        {({loggedInUsername}) => <p className="inline-block pl-1">{loggedInUsername}</p>}
+                    </UserContext.Consumer>
+                    <p><b>Location:</b> {location || "Chennai"}</p>
+                </div>
             </div>
         )
     }

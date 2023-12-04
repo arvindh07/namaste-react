@@ -14,9 +14,9 @@ class About extends React.Component {
   render() {
     // console.log("parent render");
     return (
-      <div className='container about'>
-        <h1>About Us</h1>
-        <p>This website is used to order your favorite foods using our DOINK🔥🚀</p>
+      <div className='w-10/12 mx-auto'>
+        <h1 className='text-2xl font-bold'>About Us</h1>
+        <p className='py-4'>This website is used to order your favorite foods using our DOINK🔥🚀</p>
         <UserCard />
         {/* <UserCard name={"Second"} location={"Bengalure, KA"} /> */}
         {/* <UserCard name={"Third"} location={"Bengalure, KA"} /> */}
