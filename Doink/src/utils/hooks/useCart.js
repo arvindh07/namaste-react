@@ -10,7 +10,7 @@ const useCart = () => {
             const tPrice = price * foodInfo?.quantity;
             total += tPrice;
         }
-        console.log("t", total);
+        // console.log("t", total);
         return total;
     }
     return { calculateTotalPrice };

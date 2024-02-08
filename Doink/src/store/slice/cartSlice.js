@@ -15,7 +15,7 @@ const cartSlice = createSlice({
                 let formObj = { ...action.payload, quantity: 1 };
                 copyState[key] = formObj;
             }
-            console.log("fin state", copyState);
+            // console.log("fin state", copyState);
             state.items = copyState; 
         },
         reduceItems: (state, action) => {

@@ -12,7 +12,7 @@ import useFetchMenu from '../utils/hooks/useFetchMenu';
 import CustomAccordion from './CustomAccordion';
 
 const Restaurant = () => {
-    const [activePanel, setActivePanel] = useState(0);
+    const [activePanel, setActivePanel] = useState(-1);
     const [toggle, setToggle] = useState(true);
     const { hotelId } = useParams();
     const [menuItems, hotelInfo] = useFetchMenu(hotelId);

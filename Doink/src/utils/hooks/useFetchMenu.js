@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { RESTAURANT_URL } from '../../utils/constants';
-import { useNavigate } from "react-router-dom";
 
 const useFetchMenu = (hotelId) => {
     const [hotelInfo, setHotelInfo] = useState({});
     const [menuItems, setMenuItems] = useState([]);
-    const navigate = useNavigate();
 
     const fetchData = async () => {
         try {

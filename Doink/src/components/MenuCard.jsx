@@ -7,7 +7,7 @@ const MenuCard = (props) => {
     const { item } = props;
 
     return (
-        <div className='flex gap-4 justify-between border-b-2 py-4 mx-4 text-left'>
+        <div className='flex gap-4 justify-between border-b-2 py-4 mx-4 text-left' data-testid="foodMenu">
             <div>
                 <h4 className='font-bold text-lg'>{item?.name}</h4>
                 <p className='font-semibold'>Rs. {item?.price / 100 || item?.defaultPrice / 100}</p>

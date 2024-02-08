@@ -24,7 +24,7 @@ const Selector = ({foodItem}) => {
     //     }
     // }, [foodItem?.id])
 
-    console.log("quan:store", quantity, foodItem?.id);
+    // console.log("quan:store", quantity, foodItem?.id);
 
     return (
         <div className='bg-black text-white flex cursor-pointer px-2 justify-center items-center w-[100px]'>
@@ -32,17 +32,18 @@ const Selector = ({foodItem}) => {
                 ? (
                     <button 
                         className='px-1 my-1'
-                        onClick={handleAddItem}>Add</button>
+                        onClick={handleAddItem} data-testid="addItem">Add</button>
                 ) : ( 
                     <>
                     <button 
                         className='hover:bg-slate-100 hover:text-black px-1 my-1'
                         onClick={handleRemoveItem}
-                        disable={quantity === 0}>-</button>
+                        disable={quantity === 0 ? true : undefined}
+                        data-testid="removeItem">-</button>
                     <p className='px-4'>{quantity}</p>
                     <button 
                         className='hover:bg-slate-100 hover:text-black px-1 my-1'
-                        onClick={handleAddItem}>+</button>
+                        onClick={handleAddItem} data-testid="addItem">+</button>
                     </>
                 )
             }

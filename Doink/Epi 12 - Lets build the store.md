@@ -1,4 +1,4 @@
-# Epi 11 - Lets build the store
+# Epi 12 - Lets build the store
 
 ## task - find diff bw these:
 - onClick={handleClick} -> it works with no arg
@@ -45,3 +45,26 @@ the same obj(same reference)
 work here🚀🚀
 
 ### read more about diff bw mutate and reassigning the obj and current in redux??🔴🔴
+
+## extra - reassignment and mutation
+
+- reassignment -> 
+1. let name = "arvindh"
+name = "leo"✅
+log(name) => "leo"
+2. const name = "arvindh"
+name = "leo"❌cant assign to a constant variable
+
+- mutating -> 
+1. let obj = { name: "arvindh" }
+obj.name = "leo"✅
+log(obj) => { name: "leo" }
+2. const obj = { name: "arvindh" }
+obj.name = "leo"
+log(obj) => { name: "leo" }
+
+#### why both worked?
+
+- bcoz here we r not reassigning a varibale bt just mutating the variable🚀🚀
+- mutate - changign the value of object🔥🔥
+- understanding of heap and stack will help here🔥🚀

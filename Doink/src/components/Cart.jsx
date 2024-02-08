@@ -6,7 +6,7 @@ import useCart from '../utils/hooks/useCart';
 const Cart = () => {
   const cartItems = useSelector(store => store?.cart?.items);
   const { calculateTotalPrice } = useCart();
-  console.log("cart", cartItems);
+  // console.log("cart", cartItems);
   return (
     <div className='text-center w-9/12 mx-auto mb-8'>
       <h3 className='text-3xl my-8'>Cart</h3>

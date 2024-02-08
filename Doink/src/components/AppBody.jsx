@@ -19,7 +19,7 @@ const AppBody = () => {
 
     const filterTopRated = () => {
         const filteredRes = localRes?.filter((res) => {
-            if (res?.info?.avgRating > 4) {
+            if (res?.info?.avgRating > 4.2) {
                 return res;
             }
         })
@@ -75,7 +75,8 @@ const AppBody = () => {
                                     type="text"
                                     className="border-2 border-black rounded-md mr-4 p-1"
                                     value={text}
-                                    onChange={(e) => setText(e.target.value)} />
+                                    onChange={(e) => setText(e.target.value)} 
+                                    data-testid="searchInput" />
                                 <button className="bg-black border-2 border-black text-white mr-2 px-2 hover:bg-white hover:text-black" onClick={searchHandler}>Search</button>
                             </div>
                             <button
@@ -98,7 +99,7 @@ const AppBody = () => {
                                 className="px-3 my-4 mr-2 text-2xl font-bold md:text-4xl md:px-0">Best restaurants for you</h2>
                             <div className="grid grid-cols-1 px-3 mx-auto mt-8 max-w-4/6 sm:grid-cols-2 sm:gap-x-4 sm:auto-rows-auto md:grid-cols-3 lg:grid-cols-4">
                                 {localRes?.map((restaurant) => (
-                                    <Link className="contents sm:max-w-3/6" to={`/restaurant/${restaurant?.info?.id}`} key={restaurant.info.id}>
+                                    <Link data-testid="restro" className="contents sm:max-w-3/6" to={`/restaurant/${restaurant?.info?.id}`} key={restaurant.info.id}>
                                         {restaurant?.info?.avgRating >= 4.4
                                             ? <HighRatedRestaurant restaurant={restaurant} />
                                             : <RestaurantCard restaurant={restaurant} />
@@ -107,7 +108,7 @@ const AppBody = () => {
                                 ))}
                             </div>
                         </>
-                        : <h1 style={{ margin: "1em 0 1em 0.6em", fontSize: "2.2em" }}>No records.</h1>}
+                        : <h1 style={{ margin: "1em 0 1em 0.6em", fontSize: "2.2em" }}>No recs.</h1>}
                 </div>
             )}
         </>

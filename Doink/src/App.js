@@ -11,9 +11,10 @@ import Cart from "./components/Cart";
 import Restaurant from "./components/Restaurant";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/context/UserContext";
-// import Grocery from "./components/Grocery";
+import Grocery from "./components/Grocery";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import Contact from "./components/Contact";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"))
@@ -64,6 +65,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/grocery",
                 element: <Suspense fallback={<Shimmer />}><Grocery /></Suspense>
+            },
+            {
+                path: "/contact",
+                element: <Contact />
             }
         ]
     }
