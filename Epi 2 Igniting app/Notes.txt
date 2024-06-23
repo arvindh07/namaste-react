@@ -60,6 +60,7 @@ Error1: React is not defined
 
 Error2: Browser scripts cant have imports or exports
 - browser treats our script<app.js> tag, as a normal js file, but it is not.
+- and normal js file won't have imports and exports.
 - so we need add <script type="module">, to make it work.
 
 BrowsersList
